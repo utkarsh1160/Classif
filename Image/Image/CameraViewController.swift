@@ -10,6 +10,7 @@ import UIKit
 import AVKit
 import CoreML
 import Vision
+import Firebase
 
 
 class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
@@ -51,10 +52,15 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
             guard let ciImage = CIImage(image: imagePost!) else {
                 fatalError("couldn't convert UIImage to CIImage")
             }
-            self.imageClassify(image: ciImage)
+            let ref = Database.database().reference()
+            ref.child("newDictionary").observe(.value)
+            { (snapshot) in
+                let dict = (snapshot.value as? [String: String])!
+                self.imageClassify(image: ciImage, dict: dict)
+                while (!self.classified) {}
+                self.performSegue(withIdentifier: "resultSegue1", sender: nil)
+            }
             // performSegue(withIdentifier: "cameraOutput", sender: nil)
-            while (!classified) {}
-            performSegue(withIdentifier: "resultSegue1", sender: nil)
         }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -130,7 +136,7 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
     }
 
 extension CameraViewController {
-func imageClassify(image: CIImage) {
+    func imageClassify(image: CIImage, dict: [String: String]) {
     // Load the ML model through its generated class
         guard let model = try? VNCoreMLModel(for: MobileNetV2().model) else {
             fatalError("can't load Places ML model")
@@ -149,13 +155,13 @@ func imageClassify(image: CIImage) {
                 for item in array {
                     let confidence = (Int(res.confidence * 100))
                     outputText += "\(confidence)%: \(item)\n"
-                    if ImageView.dict[item.lowercased()] != nil {
+                    if dict[item.lowercased()] != nil {
                         possibleItems[confidence] = item
                         correspondingConfidence.append(confidence)
                     }
                 }
             }
-            self?.assign_tag(items: possibleItems, confidencesTemp: correspondingConfidence)
+            self?.assign_tag(items: possibleItems, confidencesTemp: correspondingConfidence, dict: dict)
         }
     // Run the CoreML3 Resnet50 classifier on global dispatch queue
         let handler = VNImageRequestHandler(ciImage: image)
@@ -168,7 +174,7 @@ func imageClassify(image: CIImage) {
           }
         }
         
-        func assign_tag(items: [Int: String], confidencesTemp: [Int]) {
+    func assign_tag(items: [Int: String], confidencesTemp: [Int], dict: [String: String]) {
             var confidences = confidencesTemp
             confidences.sort()
             var count = 1
@@ -177,7 +183,7 @@ func imageClassify(image: CIImage) {
                 print(count)
                 count += 1
                 print("\(confidence) \(item)")
-                if let bin = ImageView.dict[item]  {
+                if let bin = dict[item]  {
                     ImageView.finalBin = bin
                     ImageView.finalItem = item
                 }

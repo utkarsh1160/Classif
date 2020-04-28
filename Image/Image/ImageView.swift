@@ -9,6 +9,7 @@
 import CoreML
 import UIKit
 import Vision
+import Firebase
 
 
 
@@ -86,22 +87,39 @@ func imageClassify(image: CIImage) {
         var correspondingConfidence = [Int]()
         let arrayBestGuess = results![0].identifier.components(separatedBy: ", ")
         ImageView.bestGuess = arrayBestGuess[0]
-        for res in results![0...5] {
-            let array = res.identifier.components(separatedBy: ", ")
-            print(array)
-            for item in array {
-                let confidence = (Int(res.confidence * 100))
-                outputText += "\(confidence)%: \(item)\n"
-                if ImageView.dict[item.lowercased()] != nil {
-                    possibleItems[confidence] = item
-                    correspondingConfidence.append(confidence)
+        let ref = Database.database().reference()
+        ref.child("newDictionary").observe(.value)
+        { (snapshot) in
+            let newDict = (snapshot.value as? [String: String])!
+            for res in results![0...5] {
+                let array = res.identifier.components(separatedBy: ", ")
+                print(array)
+                for item in array {
+                    let confidence = (Int(res.confidence * 100))
+                    outputText += "\(confidence)%: \(item)\n"
+                    if newDict[item.lowercased()] != nil {
+                        possibleItems[confidence] = item
+                        correspondingConfidence.append(confidence)
+                    }
+                }
+            }
+            var confidences = correspondingConfidence
+            confidences.sort()
+            var count = 1
+            for confidence in confidences {
+                let item = possibleItems[confidence]!
+                print(count)
+                count += 1
+                print("\(confidence) \(item)")
+                if let bin = newDict[item]  {
+                    ImageView.finalBin = bin
+                    ImageView.finalItem = item
                 }
             }
         }
         DispatchQueue.main.async { [weak self] in
             self?.answerLabel.text! = outputText
         }
-        self?.assign_tag(items: possibleItems, confidencesTemp: correspondingConfidence)
     }
 // Run the CoreML3 Resnet50 classifier on global dispatch queue
     let handler = VNImageRequestHandler(ciImage: image)

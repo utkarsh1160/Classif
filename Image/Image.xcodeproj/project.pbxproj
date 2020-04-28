@@ -14,6 +14,7 @@
 		9341E4E524563806009F681F /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9341E4E424563806009F681F /* Result.swift */; };
 		9356D4E524471E1A0092F9C3 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9356D4E424471E1A0092F9C3 /* CameraViewController.swift */; };
 		9356D4E7244735620092F9C3 /* MobileNetV2.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 9356D4E6244735620092F9C3 /* MobileNetV2.mlmodel */; };
+		93FCF0632458826200A49616 /* UpdateDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93FCF0622458826200A49616 /* UpdateDatabase.swift */; };
 		AA47B57F2445D47C000110BA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA47B57E2445D47C000110BA /* AppDelegate.swift */; };
 		AA47B5812445D47C000110BA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA47B5802445D47C000110BA /* SceneDelegate.swift */; };
 		AA47B5832445D47C000110BA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA47B5822445D47C000110BA /* ViewController.swift */; };
@@ -32,6 +33,7 @@
 		9341E4E424563806009F681F /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		9356D4E424471E1A0092F9C3 /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		9356D4E6244735620092F9C3 /* MobileNetV2.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = MobileNetV2.mlmodel; path = ../../MobileNetV2.mlmodel; sourceTree = "<group>"; };
+		93FCF0622458826200A49616 /* UpdateDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateDatabase.swift; sourceTree = "<group>"; };
 		AA47B57B2445D47C000110BA /* Image.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Image.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA47B57E2445D47C000110BA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AA47B5802445D47C000110BA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -103,6 +105,7 @@
 				9341E4E22456267A009F681F /* Items.swift */,
 				933AFBF72456664F008D248F /* GoogleService-Info.plist */,
 				9356D4E424471E1A0092F9C3 /* CameraViewController.swift */,
+				93FCF0622458826200A49616 /* UpdateDatabase.swift */,
 				AA47B5922445EC94000110BA /* ImageView.swift */,
 				4A0511D32455B15200802394 /* Material.json */,
 			);
@@ -233,6 +236,7 @@
 				AA47B5812445D47C000110BA /* SceneDelegate.swift in Sources */,
 				9341E4E524563806009F681F /* Result.swift in Sources */,
 				9356D4E524471E1A0092F9C3 /* CameraViewController.swift in Sources */,
+				93FCF0632458826200A49616 /* UpdateDatabase.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

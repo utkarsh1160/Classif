@@ -19,11 +19,14 @@ class Result: UIViewController {
     @IBOutlet weak var itemName: UILabel!
     @IBOutlet weak var binTypeName: UILabel!
     @IBOutlet weak var goesIntoLabel: UILabel!
+    @IBOutlet weak var addToDatabaseButtonOutlet: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        addToDatabaseButtonOutlet.alpha = 0.0
         if item == "" || binType == "" {
             goesIntoLabel.text = "\(bestGuess) doesn't exist in our database"
+            addToDatabaseButtonOutlet.alpha = 1.0
         }
         itemName.text = item
         binTypeName.text = binType
@@ -32,6 +35,15 @@ class Result: UIViewController {
     
     @IBAction func backToMain(_ sender: Any) {
         performSegue(withIdentifier: "backToMainSegue", sender: nil)
+    }
+    @IBAction func addToDatabaseButton(_ sender: Any) {
+        performSegue(withIdentifier: "resultToDatabaseSegue", sender: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let dest = segue.destination as? UpdateDatabase {
+            dest.item = bestGuess
+        }
     }
     
     /*

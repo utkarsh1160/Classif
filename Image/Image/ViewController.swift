@@ -55,7 +55,28 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         self.imagePickerViewController.delegate = self
         self.imagePickerViewController.sourceType = .photoLibrary
         // Do any additional setup after loading the view.
-        ref = Database.database().reference()
+//        ref = Database.database().reference()
+//        ref.child("newDictionary").observe(.value)
+//        { (snapshot) in
+//            let newDict = (snapshot.value as? [String: String])!
+//            print(newDict)
+//        }
+    }
+    
+    func writeToFir(ref: DatabaseReference) {
+        let itemBinPair = ref.child("newDictionary")
+        itemBinPair.setValue(Items.dict)
+    }
+    
+    static func readFromFir(ref: DatabaseReference) -> [String: String] {
+        var retDict = [String: String]()
+        ref.child("newDictionary").observe(.value)
+        { (snapshot) in
+            let newDict = (snapshot.value as? [String: String])!
+            print(newDict)
+            Items.dict = newDict
+        }
+        return retDict
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
