@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>93406365517-4o5uf8ijlkn99sfgl7m78rdihavmta4d.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.93406365517-4o5uf8ijlkn99sfgl7m78rdihavmta4d</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCudSvqugrnwRrLxeTqZnYuj6d6LRJOBGI</string>
+	<key>GCM_SENDER_ID</key>
+	<string>93406365517</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>iOS-Decal.Image</string>
+	<key>PROJECT_ID</key>
+	<string>iwaste-7d24c</string>
+	<key>STORAGE_BUCKET</key>
+	<string>iwaste-7d24c.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:93406365517:ios:9c1e5462b6081c8f4f5904</string>
+	<key>DATABASE_URL</key>
+	<string>https://iwaste-7d24c.firebaseio.com</string>
+</dict>
+</plist>
